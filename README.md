@@ -11,3 +11,7 @@ Slack bot for diggerplus team.
 - [ ] Response to special member
 - [ ] More commands
 - [ ] Others
+
+# Slack of diggerplus team
+
+[Diggerplus slack address](https://diggerplus.slack.com)
