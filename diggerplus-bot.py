@@ -3,10 +3,13 @@
 import re
 import random
 import redis
+import logging
 
 from slackbot.bot import respond_to
 from slackbot.bot import listen_to
 from google import lucky
+
+logger = logging.getLogger()
 
 r = redis.Redis()
 
@@ -38,6 +41,7 @@ def help(message):
 @respond_to('^!(\w+)$')
 @listen_to('^!(\w+)$')
 def keyword_lookup(message, keyword):
+    logger.info('Loop up for keyword: %s' % keyword)
     resp = r.get(KEYWORD_PREFIX % keyword)
     if not resp:
         return message.send("Not sure what you mean.")
@@ -47,6 +51,7 @@ def keyword_lookup(message, keyword):
 @respond_to('^!set (\w+) (.+)$')
 @listen_to('^!set (\w+) (.+)$')
 def set_keyword(message, keyword, value):
+    logger.info('Set keyword: %s to value: %s' % (keyword, value))
     r.set(KEYWORD_PREFIX % keyword, value)
     message.send('Got it!')
     r.sadd(ALL_KEYWORDS, keyword)
@@ -67,6 +72,7 @@ def google(message, keyword):
 @listen_to("^!g (.*)$")
 @respond_to("^!g (.*)$")
 def google_lucky(message, keyword):
+    logger.info('Google for keyword: %s' % keyword)
     r = lucky(keyword)
     if r:
         url, desc = r
