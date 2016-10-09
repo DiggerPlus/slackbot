@@ -1,5 +1,5 @@
 # Slackbot for diggerplus team
-Slack bot for diggerplus team.
+Slack bot for diggerplus team, build with [slackbot](https://github.com/lins05/slackbot).
 
 # Usage
 
