@@ -38,6 +38,11 @@ def help(message):
     message.reply("Waht's your problem?")
 
 
+@respond_to('^who are you')
+def who_are_you(message):
+    message.reply("I'm a robot\n https://github.com/DiggerPlus/slackbot")
+
+
 @respond_to('^!(\w+)$')
 @listen_to('^!(\w+)$')
 def keyword_lookup(message, keyword):
